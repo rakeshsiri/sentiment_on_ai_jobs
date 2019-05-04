@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>blog</title>
+<title>sentiment_on_ai_jobs</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13116,14 +13116,23 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Sentiment-on-Data-Science/AI-Jobs">Sentiment on <strong>Data Science/AI</strong> Jobs<a class="anchor-link" href="#Sentiment-on-Data-Science/AI-Jobs">&#182;</a></h1><p>This include the following</p>
-<ul>
-<li>Data Analyst</li>
-<li>Data Engineer</li>
-<li>Data Scientist </li>
-<li>Machine Learning Engineer</li>
-<li>Business Analyst</li>
-</ul>
+<h1 id="Businees-Understanding">Businees Understanding<a class="anchor-link" href="#Businees-Understanding">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sentiment-on-Data-Science/AI-Jobs">Sentiment on <strong>Data Science/AI</strong> Jobs<a class="anchor-link" href="#Sentiment-on-Data-Science/AI-Jobs">&#182;</a></h2><p>Using stackoverflow.com's 2018 survey data to have a better understanding about the general sentiment around the field of Data Science/AI by answering the following 6 questions.</p>
+<ol>
+<li>Who(country) pays top dollar?</li>
+<li>Are you satisfied with your job?</li>
+<li>How does one feel about the future of AI?</li>
+<li>What area in AI is more interesting?</li>
+<li>But what about the threat AI poses?</li>
+<li>Who should take responsibility in preventing the AI apocalypse?</li>
+</ol>
+<p>Answering this questions will help an aspiring Data Scientist?/AI engineer to make an informed decision on what direction should set sail.</p>
 
 </div>
 </div>
@@ -13147,7 +13156,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Loading-Data">Loading Data<a class="anchor-link" href="#Loading-Data">&#182;</a></h1>
+<h1 id="Data-Understanding">Data Understanding<a class="anchor-link" href="#Data-Understanding">&#182;</a></h1><h3 id="Loading-Data">Loading Data<a class="anchor-link" href="#Loading-Data">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13155,6 +13164,14 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will load the survey data for year 2018 and filter out for Data roles.</p>
+<p>This include the following</p>
+<ul>
+<li>Data Analyst</li>
+<li>Data Engineer</li>
+<li>Data Scientist </li>
+<li>Machine Learning Engineer</li>
+<li>Business Analyst</li>
+</ul>
 
 </div>
 </div>
@@ -13374,8 +13391,196 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Following schema gives us more information on individual columns of 2018 survey data</p>
+<h4 id="Columns-that-are-considered-for-our-analysis:">Columns that are considered for our analysis:<a class="anchor-link" href="#Columns-that-are-considered-for-our-analysis:">&#182;</a></h4><p>DevType,Country,ConvertedSalary,JobSatisfaction,YearsCodingProf,AIFuture,AIInteresting,AIDangerous,AIResponsible</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[156]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Total records available</span>
+<span class="n">ds_data</span><span class="p">[[</span><span class="s1">&#39;DevType&#39;</span><span class="p">,</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span><span class="s1">&#39;ConvertedSalary&#39;</span><span class="p">,</span><span class="s1">&#39;JobSatisfaction&#39;</span><span class="p">,</span><span class="s1">&#39;YearsCodingProf&#39;</span><span class="p">,</span><span class="s1">&#39;AIFuture&#39;</span><span class="p">,</span><span class="s1">&#39;AIInteresting&#39;</span><span class="p">,</span><span class="s1">&#39;AIDangerous&#39;</span><span class="p">,</span><span class="s1">&#39;AIResponsible&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[156]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(21889, 9)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[151]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#To understand the completeness of data (no.of availble values)</span>
+<span class="n">ds_data</span><span class="p">[[</span><span class="s1">&#39;DevType&#39;</span><span class="p">,</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span><span class="s1">&#39;ConvertedSalary&#39;</span><span class="p">,</span><span class="s1">&#39;JobSatisfaction&#39;</span><span class="p">,</span><span class="s1">&#39;YearsCodingProf&#39;</span><span class="p">,</span><span class="s1">&#39;AIFuture&#39;</span><span class="p">,</span><span class="s1">&#39;AIInteresting&#39;</span><span class="p">,</span><span class="s1">&#39;AIDangerous&#39;</span><span class="p">,</span><span class="s1">&#39;AIResponsible&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[151]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DevType            21889
+Country            21889
+ConvertedSalary    11839
+JobSatisfaction    17365
+YearsCodingProf    19723
+AIFuture           16795
+AIInteresting      15634
+AIDangerous        14899
+AIResponsible      15658
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[153]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#No.of null values in the data</span>
+<span class="n">ds_data</span><span class="p">[[</span><span class="s1">&#39;DevType&#39;</span><span class="p">,</span><span class="s1">&#39;Country&#39;</span><span class="p">,</span><span class="s1">&#39;ConvertedSalary&#39;</span><span class="p">,</span><span class="s1">&#39;JobSatisfaction&#39;</span><span class="p">,</span><span class="s1">&#39;YearsCodingProf&#39;</span><span class="p">,</span><span class="s1">&#39;AIFuture&#39;</span><span class="p">,</span><span class="s1">&#39;AIInteresting&#39;</span><span class="p">,</span><span class="s1">&#39;AIDangerous&#39;</span><span class="p">,</span><span class="s1">&#39;AIResponsible&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[153]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DevType                0
+Country                0
+ConvertedSalary    10050
+JobSatisfaction     4524
+YearsCodingProf     2166
+AIFuture            5094
+AIInteresting       6255
+AIDangerous         6990
+AIResponsible       6231
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[184]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mean</span> <span class="o">=</span> <span class="n">ds_data</span><span class="o">.</span><span class="n">ConvertedSalary</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">std</span> <span class="o">=</span> <span class="n">ds_data</span><span class="o">.</span><span class="n">ConvertedSalary</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">ds_data</span><span class="o">.</span><span class="n">ConvertedSalary</span><span class="p">[(</span><span class="n">ds_data</span><span class="o">.</span><span class="n">ConvertedSalary</span><span class="o">&lt;</span><span class="p">(</span><span class="n">mean</span><span class="o">+</span><span class="n">std</span><span class="p">))]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">);</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard Deviation:&#39;</span><span class="p">,</span><span class="n">std</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average Converted Salary:&#39;</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Standard Deviation: 211271.4538061447
+Average Converted Salary: 98780.54683672608
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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669vrXcLVTGcZpIMn7nsKzo6xviZNwmzbh5m3RzMuXk066xbW1s+8sW0IQ2P3d3dWbduXZYvX57W1tZ0dnZm/fr1g/WNGzempaUl7e3te1wDAACg+obsVh233nprnn322SxbtixtbW1JkqlTp6a/vz9PPfVUkmTFihU544wz9qoGAABA9Q3JlccXX3wxy5cvz6RJkzJ79uwkyeGHH55ly5ZlyZIlWbRoUbZv356JEydm6dKlSZLW1tY9qtEYdrwzMOyWewIAQDMbkvD4iU98Ii+88MIH1k444YT09PRUtUb9tY0akZlXrKx3G1XRc8usercAAAB1N2TLVgEAANh3CY8AAAAUEh4BAAAoJDwCAABQSHgEAACgkPAIAABAIeERAACAQsIjAAAAhYRHAAAACgmPAAAAFBIeAQAAKCQ8AgAAUEh4BAAAoJDwCAAAQCHhEQAAgELCIwAAAIWERwAAAAoJjwAAABQSHgEAACgkPAIAAFBIeAQAAKCQ8AgAAEAh4REAAIBCwiMAAACFhEcAAAAKjax3A8DQ2fHOQDo6xtS7jaro374zW7dsq3cbAABNQ3iEJtI2akRmXrGy3m1URc8ts7K13k0AADQRy1YBAAAoJDwCAABQSHgEAACgkPAIAABAoYrD45133pmNGzfWshcAAAAaVMXh8fvf/35OPfXUXHLJJXnggQeyY8eOWvYFAABAA6k4PC5fvjxr1qzJKaeckm9961v5nd/5nVx77bV58skna9kfAAAADeAjfebx4IMPzuc///n88z//c/7xH/8xa9euzRe+8IVMnz49t99+e956661a9QkAAEAdjfyoO/zgBz/Ifffdl0ceeSRTp07N3LlzM2HChNx55525+OKL80//9E+16BMAAIA6qjg8dnd35/7778+YMWMya9as9PT05NBDDx2sH3vssfnUpz5VkyYBAACor4rD4/bt2/N3f/d3OeaYYz6wPmrUqHz729+uWmMAAAA0jorD4yWXXJL9999/l21vvPFG+vv7B69ATp48ubrdAQAA0BAq/sKcSy+9NK+88sou21555ZVcdtllVW8KAACAxlJxeHzppZcyZcqUXbZNmTIlP//5z6veFAAAAI2l4vA4fvz4rFu3bpdt69atS3t7e0X7d3d3Z/r06ZkyZUp+8pOfDG6fPn16Tj/99MyaNSuzZs3KY489Nlh75plnctZZZ2XGjBm56KKL0tfXV1ENAACA6qo4PH7uc5/LvHnz8u///u/56U9/mjVr1uTLX/5yzjnnnIr2P/XUU3PXXXdl4sSJ76t9/etfz8qVK7Ny5cqcfPLJSZJyuZyrrroqCxcuzOrVqzNt2rTcfPPNhTUAAACqr+IvzPnSl76UkSNHpru7O6+88koOO+ywnHPOObnwwgsr2n/atGkfqbG1a9dmv/32G9xv9uzZOfXUU3PTTTfttgYAAED1VRweW1tbM3fu3MydO7fqTVx55ZUpl8s58cQTc/nll2fs2LHp7e3NhAkTBp8zbty4lEqlbN68ebe1SpfRJsn48aOrehzA0OroGFPvFiqyr/TJ3jPr5mHWzcGcm4dZV6bi8JgkP//5z/Nf//Vfefvtt3fZ/sd//Md73MBdd92Vzs7O7NixIzfeeGMWL148ZEtQ+/reTKlUHpLXqpQ3LlTu9de31ruFQh0dY/aJPtl7Zt08zLo5mHPzaNZZt7a2fOSLaRWHx+XLl2fZsmX55Cc/ucv9HltaWvYqPHZ2diZJ2traMmfOnPzpn/7p4Pb169cPPm/jxo1paWlJe3v7bmsAAABUX8Xh8Vvf+lbuueeefPKTn6zai7/99tsZGBjImDFjUi6X88ADD6SrqytJMnXq1PT39+epp57KtGnTsmLFipxxxhmFNQAAAKqv4vC4//7758gjj9zjF7rhhhvy0EMPZcOGDbnwwgvT3t6e5cuXZ968eRkYGEipVMrkyZOzaNGiJO9+xnLJkiVZtGhRtm/fnokTJ2bp0qWFNQAAAKqv4vD4la98JTfccEMuu+yyfPzjH9+l1tpafMePBQsWZMGCBe/bfu+9937oPieccEJ6eno+cg0AAIDqqjg8zp8/P0lyzz33DG4rl8tpaWnJ888/X/3OAAAAaBgVh8dHHnmkln0AAADQwCoOjxMnTkySlEqlbNiwIYccckjNmgIAAKCxFH9Y8f/ZsmVLrrjiihxzzDH5gz/4gyTvXo289dZba9YcAAAAjaHi8Lho0aKMHj06a9asyahRo5Ikxx9/fL7zne/UrDkAAAAaQ8XLVn/wgx/ksccey6hRo9LS0pIkGTduXPr6+mrWHAAAAI2h4iuPY8aMyaZNm3bZtn79+nR0dFS9KQAAABpLxeHxnHPOyZe//OU8/vjjKZVK+dGPfpSrr746s2fPrmV/AAAANICKl61efPHFaWtry+LFi7Nz585cc801Offcc/PFL36xlv0BAADQACoOjy0tLbngggtywQUX1LAdAAAAGtFH+sKcD3PSSSdVpRkAAAAaU8Xh8dprr93l8aZNm/LOO+/k0EMPzSOPPFL1xgAAAGgcFYfHNWvW7PJ4YGAgt99+ew466KCqNwUAAEBjqfjbVt9rxIgR+ZM/+ZN885vfrGY/AAAANKA9Do9J8r3vfS8tLS3V6gUAAIAGVfGy1d/93d/dJShu27YtO3bsyKJFi2rSGAAAAI2j4vC4dOnSXR4fcMAB+Y3f+I2MHj266k0BAADQWCoOj5/61Kdq2QcAAAANrOLweNVVV1X0+cYlS5bsVUMAAAA0noq/MGfs2LH57ne/m4GBgRx22GEplUp55JFHMnbs2Pzar/3a4B8AAACGn4qvPL788sv5+7//+0ybNm1w21NPPZXbb789d9xxR02aAwAAoDFUfOXxmWeeybHHHrvLtmOPPTY/+tGPqt4UAAAAjaXi8Phbv/Vb+Zu/+Zv09/cnSfr7+3Prrbemq6urZs0BAADQGCpetnrTTTflyiuvzLRp0zJ27Nhs2bIlU6dOfd8tPAAAABh+Kg6Phx9+eFasWJHe3t689tpr6ejoyIQJE2rZGwAAAA2i4mWrSbJp06b88Ic/zBNPPJEJEybk1VdfzSuvvFKr3gAAAGgQFYfHJ554Iqeffnp6enryjW98I0mybt26XHfddbXqDQAAgAZRcXj867/+69x222254447MnLku6tdjz322Pz4xz+uWXMAAAA0horD4y9+8YucdNJJSZKWlpYkyahRozIwMFCbzgAAAGgYFYfHyZMn57HHHttl2/e///0cddRRVW8KAACAxlLxt63Onz8/l1xySX7v934v/f39WbhwYdasWTP4+UcAAACGr4qvPB533HG577778pu/+Zv53Oc+l8MPPzzf/va3c8wxx9SyPwAAABpARVceBwYGcsEFF+SOO+7IxRdfXOueAAAAaDAVhccRI0bkf//3f1MqlWrdD0BFdrwzkI6OMfVuoyK767N/+85s3bJtCLsBANgzFX/m8c/+7M9y3XXXZd68eTnssMMGv3E1SVpbK179ClAVbaNGZOYVK+vdxl7ruWVWtta7CQCAClQcHhcsWJAkuffeeweDY7lcTktLS55//vnadAcAAEBDKAyPr7/+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z4eF+lqo9ft4uIT6fTY89vX15bnnnss//MM/JEnOPPPMXH/99dm4cWPGjRtX0d/R2tpSyxb32CEHH1DvFqpiuBxH4lga1XA5luFyHIljaVTD5ViGy3Ekw+dY2kaNyP+54aF6t7HX7ljwB8NmJsMp0CcZFu+v5N332FsNlj32JAu1lMvlcg16qblnn302V199de6///7BbZ/97GezdOnSHH300XXsDAAAYPhxqw4AAAAK7bPhsbOzM6+++moGBgaSJAMDA3nttdfS2dlZ584AAACGn302PI4fPz5dXV1ZtWpVkmTVqlXp6uqq+POOAAAAVG6f/cxjkvzsZz/L/Pnzs2XLlowdOzbd3d058sgj690WAADAsLNPh0cAAACGxj67bBUAAIChIzwCAABQSHgEAACgkPAIAABAIeGxQbz00ks599xzM2PGjJx77rl5+eWX690SBaZPn57TTz89s2bNyqxZs/LYY48lSZ555pmcddZZmTFjRi666KL09fUN7lOLGtXV3d2d6dOnZ8qUKfnJT34yuH135+hQ16iOD5v1h53bifN7X7Vp06ZcfPHFmTFjRmbOnJnLLrssGzduTDL0MzXv2tndnKdMmZKZM2cOntcvvPDC4H5r1qzJ6aefns985jP58z//82zbtq2mNarj0ksvzVlnnZWzzz47c+bMyfPPP5/E7+uaK9MQzj///PK9995bLpfL5Xvvvbd8/vnn17kjivz+7/9++YUXXthlW6lUKp922mnlJ598slwul8vLli0rz58/v2Y1qu/JJ58sr1+//n3z3d05OtQ1quPDZv1B53a57Pzel23atKn8+OOPDz7+2te+Vv7Lv/zLIZ+pedfWh825XC6XjzrqqPKbb775vn3efPPN8m//9m+XX3rppXK5XC5fc8015b/927+tWY3q2bJly+B/P/zww+Wzzz67XC77fV1rwmMD2LBhQ/nEE08s79y5s1wul8s7d+4sn3jiieW+vr46d8bufNA/MP/zP/+z/Id/+IeDj/v6+srHHXdczWrUzq/Od3fn6FDXqL5Kw6Pze/h48MEHy1/84heHfKbmPbR+Oedy+cPD4wMPPFD+0pe+NPj4xz/+cfmzn/1szWrUxr/927+V/+iP/sjv6yEwst5XPkl6e3tz6KGHZsSIEUmSESNG5JBDDklvb2/GjRtX5+7YnSuvvDLlcjknnnhiLr/88vT29mbChAmD9XHjxqVUKmXz5s01qbW3tw/NgTa53Z2j5XJ5SGv+nzA03ntujx071vk9TJRKpdx9992ZPn36kM/UvIfOr875l84///wMDAzklFNOybx589LW1va+mUyYMCG9vb1JUpMa1XXttdfme9/7Xsrlcr75zW/6fT0EfOYR9tBdd92V++67L//yL/+ScrmcxYsX17sloAqc28Pb9ddfnwMPPDDnnXdevVuhht4750cffTT/+q//mrvuuis//elPs2zZsjp3SDXceOONefTRR/PVr341S5YsqXc7TUF4bACdnZ159dVXMzAwkCQZGBjIa6+9ls7Ozjp3xu78cj5tbW2ZM2dOnn766XR2dmb9+vWDz9m4cWNaWlrS3t5ekxpDY3fn6FDXqL0POrd/ud35vW/r7u7OunXrctttt6W1tXXIZ2reQ+O9c07+/3k9evTonHPOOR96Xq9fv37wubWoURtnn312fvjDH+awww7z+7rGhMcGMH78+HR1dWXVqlVJklWrVqWrq2vYXu4eDt5+++1s3bo1SVIul/PAAw+kq6srU6dOTX9/f5566qkkyYoVK3LGGWckSU1qDI3dnaNDXaO2PuzcTmpzDju/h86tt96aZ599NsuWLUtbW1uSoZ+pedfeB835jTfeSH9/f5Jk586dWb169eB5ffLJJ2ft2rWD35D5qzOpRY3qeOutt3ZZCrxmzZp87GMf8/t6CLSUy+VyvZsg+dnPfpb58+dny5YtGTt2bLq7u3PkkUfWuy0+xP/8z/9k3rx5GRgYSKlUyuTJk7NgwYIccsghefrpp7No0aJs3749EydOzNKlS/Pxj388SWpSo7puuOGGPPTQQ9mwYUMOPvjgtLe35/7779/tOTrUNarjg2a9fPnyDz23k9qcw87v2nvxxRdz5plnZtKkSdl///2TJIcffniWLVs25DM179r5sDnPnTs3CxcuTEtLS3bu3Jnjjz8+11xzTQ466KAkyXe/+90sXbo0pVIpXV1d+drXvpYDDzywZjX23oYNG3LppZdm27ZtaW1tzcc+9rFcffXVOfroo/2+rjHhEQAAgEKWrQIAAFBIeAQAAKCQ8AgAAEAh4REAAIBCwiMAAACFhEcAAAAKCY8AAAAUEh4BAAAo9H8BM876CpiHJrkAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are lot of null values in the data, they will be handled when there are used to answer a business question. As appropriate and explanation will be provided for the same.</p>
+<p>Converted Salary, have a right skewed data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Following-schema-gives-us-more-information-on-individual-columns-of-2018-survey-data">Following schema gives us more information on individual columns of 2018 survey data<a class="anchor-link" href="#Following-schema-gives-us-more-information-on-individual-columns-of-2018-survey-data">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13477,7 +13682,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Helper-Functions">Helper Functions<a class="anchor-link" href="#Helper-Functions">&#182;</a></h1>
+<h3 id="Helper-Functions-to-Understand-Data-on-the-fly">Helper Functions to Understand Data on the fly<a class="anchor-link" href="#Helper-Functions-to-Understand-Data-on-the-fly">&#182;</a></h3><p>Gives the description of the column and prints unique sample values, to get a sense of data present.</p>
+
 </div>
 </div>
 </div>
@@ -13619,7 +13825,7 @@ And also because I am curious.</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Filtering data for the above shortlisted countries</span>
 <span class="n">country_data</span> <span class="o">=</span> <span class="n">ds_data</span><span class="p">[</span><span class="n">ds_data</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">countries</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">country_data</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">country_data</span><span class="o">.</span><span class="n">shape</span> 
 </pre></div>
 
     </div>
@@ -13689,6 +13895,13 @@ And also because I am curious.</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Data-Preparation-and-Analysis">Data Preparation and Analysis<a class="anchor-link" href="#Data-Preparation-and-Analysis">&#182;</a></h1>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13797,6 +14010,16 @@ Sample values :
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Who-pays-top-dollar?">Who pays top dollar?<a class="anchor-link" href="#Who-pays-top-dollar?">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Handling-Missing-Values:">Handling Missing Values:<a class="anchor-link" href="#Handling-Missing-Values:">&#182;</a></h4><p>To calculate the average all the null values and the zeros are dropped. Because the null values doesnt imply anything and only in rare cases such as unpaid internships the salary will be zero per month and when calculating bottom 20% this will impact the percentile values.</p>
+<h4 id="Handling-Outliers:">Handling Outliers:<a class="anchor-link" href="#Handling-Outliers:">&#182;</a></h4><p>Bottom 20% of values are removed to exclude low wages of fresh grads impacting the average salary calculation.
+Similarly top 20% of values are also excluded assuming they are salaries of industry veterans are rare cases.</p>
+
 </div>
 </div>
 </div>
@@ -14158,7 +14381,8 @@ Sample values :
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There are many speculations surrounding the field on AI. Let us understand the data we have at hand to address some of this speculations</p>
+<p>There are many speculations surrounding the field on AI. Let us understand the data we have at hand to address some of this speculations.</p>
+<p>All the null values will be replaced with 'No comments'. This is to understand how many choose not to answer the question.</p>
 
 </div>
 </div>
@@ -14198,7 +14422,7 @@ Sample values :
 <div class="prompt input_prompt">In&nbsp;[249]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;AIFuture&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;AIFuture&#39;</span>  
 <span class="n">get_column_description</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">country_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="n">country_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -14413,7 +14637,7 @@ Name: AIInteresting, dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;AIDangerous&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s1">&#39;AIDangerous&#39;</span> 
 <span class="n">get_column_description</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">country_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 <span class="n">country_data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -14561,6 +14785,16 @@ What do you think? Take a moment to think before looking at the poll.</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>Data Science/AI jobs are not only high in demand but also promise high pay and better job satisfaction among in worlds top English speaking countries namely US, UK, Ireland, Canada, and Australia.</p>
+<p>All the professional age groups are excited about the future of AI. Most of them are mainly inclined towards having AI automating most of the jobs.</p>
+<p>Industry veterans show major concern about letting “AI make important decisions”. While there are about 60% (not enough) don't believe in taking responsibility for their actions in developing AI.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
